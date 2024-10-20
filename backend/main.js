@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import express from "express";
 import authRouter from "./routers/auth.js";
 import noteRouter from "./routers/notes.js";
+import cors from 'cors';
 
 const ConnectToMongo = async () =>{
   try {
@@ -17,6 +18,12 @@ ConnectToMongo();
 // let a = await
 const app = express()
 const port = 5000
+
+
+
+app.use(cors())
+
+
 
 app.use(express.json());
 

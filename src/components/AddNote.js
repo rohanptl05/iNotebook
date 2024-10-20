@@ -31,7 +31,7 @@ const AddNote = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="desc" className="form-label">
-            Password
+            Description
           </label>
           <input
             type="text"
@@ -43,7 +43,7 @@ const AddNote = () => {
         </div>
 
         <button type="submit" className="btn btn-primary" onClick={handleClick}>
-          Submit
+          Add Note
         </button>
       </form>
     </div>
