@@ -8,7 +8,7 @@ const NotesSchema = new Schema({
   },
   title: { type: String, required: true },
   tag: { type: String, default: "General" },
-  decs: { type: String, required: true },  // Corrected from 'decs'
+  desc: { type: String, required: true },  // Corrected from 'decs'
   date: { type: Date, default: Date.now },
 });
 

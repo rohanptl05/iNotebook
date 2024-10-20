@@ -8,7 +8,7 @@ const Noteitem = (props) => {
         <div className="card-body">
           <h5 className="card-title"> {note._id}</h5>
           <h5 className="card-title"> {note.title}</h5>
-          <p className="card-text">{note.decs} lorem34</p>
+          <p className="card-text">{note.desc} lorem34</p>
           <i className="fa-regular fa-pen-to-square mx-2"></i>
           <i className="fa-sharp-duotone fa-solid fa-trash mx-2"></i>
         </div>

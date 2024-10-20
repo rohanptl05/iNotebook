@@ -22,11 +22,11 @@ router.post(
   fetchuser,
   [
     body('title', 'Enter a valid title').isLength({ min: 3 }),
-    body('decs', 'Description must be at least 5 characters').isLength({ min: 5 })
+    body('desc', 'Description must be at least 5 characters').isLength({ min: 5 })
   ],
   async (req, res) => {
     try {
-      const { title, decs, tag } = req.body;
+      const { title, desc, tag } = req.body;
 
       // If there are errors, return Bad request and the errors
       const errors = validationResult(req);
@@ -38,7 +38,7 @@ router.post(
       const note = new Notes({
         user: req.user.id,
         title,
-        decs: decs,  // Mapping 'description' from req.body to 'desc' in schema
+        desc: desc,  // Mapping 'description' from req.body to 'desc' in schema
         tag
       });
 
@@ -55,13 +55,13 @@ router.post(
 // ROUTE 3: updating and existing  Note using: PuT "/api/notes/updatenote". Login required
 
 router.put('/updatenote/:id',fetchuser,async (req,res)=>{
-  const {title,decs,tag}= req.body;
+  const {title,desc,tag}= req.body;
 
   try {
      //create a newNote object 
   const newNote={};
   if(title){newNote.title = title};
-  if(decs){newNote.decs = decs};
+  if(desc){newNote.desc = desc};
   if(tag){newNote.tag = tag};
 
   let note= await Notes.findById(req.params.id);
@@ -82,7 +82,7 @@ router.put('/updatenote/:id',fetchuser,async (req,res)=>{
 })
 // ROUTE 4: delete and existing  Note using: PuT "/api/notes/deletenote". Login required
 router.delete('/deletenote/:id',fetchuser,async (req,res) =>{
- const {title,decs,tag} =req.body;
+ const {title,desc,tag} =req.body;
 
  try {
   
