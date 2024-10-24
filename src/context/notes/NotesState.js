@@ -1,10 +1,9 @@
-import { Await } from "react-router-dom";
+
 import NoteContext from "./noteContext";
 import { useState } from "react";
 const NoteState = (props) => {
   const host = "http://localhost:5000"
   const notesInitial = [];
-
   const [notes, setNotes] = useState(notesInitial);
 
   //GET  a note
@@ -14,7 +13,7 @@ const NoteState = (props) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwZmVmZGQyMmYwNGM4OGMzM2I0YjExIn0sImlhdCI6MTcyOTA5ODEwN30.sd5OYthPIMJiDhqjOA56ESUouCFrp1SBC8he6-ju2hE"
+        'auth-token': localStorage.getItem('token')
       }
     });
     const json = await response.json();
@@ -29,12 +28,13 @@ const NoteState = (props) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwZmVmZGQyMmYwNGM4OGMzM2I0YjExIn0sImlhdCI6MTcyOTA5ODEwN30.sd5OYthPIMJiDhqjOA56ESUouCFrp1SBC8he6-ju2hE"
+        'auth-token': localStorage.getItem('token')
       },
       body: JSON.stringify({ title, desc, tag })
     });
     const note = await response.json();
     setNotes(notes.concat(note));
+    console.log(note)
   }
 
   //delete a note
@@ -44,7 +44,7 @@ const NoteState = (props) => {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwZmVmZGQyMmYwNGM4OGMzM2I0YjExIn0sImlhdCI6MTcyOTA5ODEwN30.sd5OYthPIMJiDhqjOA56ESUouCFrp1SBC8he6-ju2hE"
+        'auth-token': localStorage.getItem('token')
       },
 
     });
@@ -65,11 +65,11 @@ const NoteState = (props) => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwZmVmZGQyMmYwNGM4OGMzM2I0YjExIn0sImlhdCI6MTcyOTA5ODEwN30.sd5OYthPIMJiDhqjOA56ESUouCFrp1SBC8he6-ju2hE"
+        'auth-token': localStorage.getItem('token')
       },
       body: JSON.stringify({ title, desc,tag })
     });
-    const json = await response.json();
+    // const json = await response.json();
 
     let newNotes = JSON.parse(JSON.stringify(notes))
     //logic to edit a clint
